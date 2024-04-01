@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.active {
+  border: 1px solid red;
+  padding: 0 3px;
+  outline: none;
+}
+
+.pagination {
+  margin: 1rem auto;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  width: 50%;
+}
+
+.cap:first-letter {
+  text-transform: capitalize
+}
