@@ -1,10 +1,12 @@
 import ReactPaginate from "react-paginate";
 import { useState, useEffect } from "react";
-import Card from "./Card";
+import Card from "../organisms/Card";
 
-const Layout = ({ postList }) => {
+const Layout = ({ list }) => {
+  //console.log("postList=", list);
+
   const [pagination, setPagination] = useState({
-    data: postList,
+    data: list,
     offset: 0,
     numberPerPage: 4,
     pageCount: 0,
@@ -30,11 +32,14 @@ const Layout = ({ postList }) => {
       <div className="container">
         <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 ">
           {pagination.currentData &&
-            pagination.currentData.map((post, index) => (
-              <div className="col mb-3" key={post.id}>
-                <Card post={post} key={`${index}-${post.userId}`} />
-              </div>
-            ))}
+            pagination.currentData.map((post, index) => {
+              console.log("Post ====", post);
+              return (
+                <div className="col mb-3" key={post.id}>
+                  <Card post={post} key={`${index}-${post.userId}`} />
+                </div>
+              );
+            })}
         </div>
       </div>
       <ReactPaginate
