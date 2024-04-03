@@ -1,31 +1,50 @@
-import React from // ,{
-//   cloneElement,
-//   createContext,
-//   useContext,
-//   useState,
-// }
-"react";
+import { useState, useEffect } from "react";
+import Comment from "../moleculs/Comment";
 
-const Card = ({ post }) => (
-  <div className="card p-3 mt-3 fs-6 text-start h-100" key={post.id}>
-    <div className="card-header">
-      <h6>
-        <span className="badge border border-success text-success ">
-          User: {post.userId}
-        </span>
-      </h6>
-      <h5 className="card-title cap">{post.title}</h5>
+const Card = ({ post }) => {
+  let [comments, setComments] = useState([]);
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`)
+      .then((response) => response.json())
+      // 4. Setting *dogImage* to the image url that we received from the response above
+      .then((data) => {
+        console.log("comments", data);
+        return setComments(data);
+      });
+  }, []);
+
+  return (
+    <div className="card p-3 mt-3 fs-6 text-start h-100" key={post.id}>
+      <div className="card-header">
+        <h6>
+          <span className="badge border border-success text-success ">
+            User: {post.userId}
+          </span>
+        </h6>
+        <h5 className="card-title cap">{post.title}</h5>
+      </div>
+      <div className="card-body">
+        <p className="card-text cap">{post.body}</p>
+        <a href="#" className="btn btn-success">
+          See more...
+        </a>
+      </div>
+      <div className="card-footer">
+        {comments?.map((comment) => (
+          <Comment>
+            <div style={{ border: "1px solid green" }}>
+              <p>{comment.name}</p>
+              <p>{comment.email}</p>
+              <p>{comment.body}</p>
+            </div>
+          </Comment>
+        ))}
+      </div>
     </div>
-    <div className="card-body">
-      <p className="card-text cap">{post.body}</p>
-    </div>
-    <div className="card-footer">
-      <a href="#" className="btn btn-success">
-        See more...
-      </a>
-    </div>
-  </div>
-);
+  );
+};
+
+export default Card;
 
 // const LIMIT = 3;
 
@@ -50,7 +69,7 @@ const Card = ({ post }) => (
 //   );
 // };
 
-// const CardContent = ({ children }) => {
+// const CardContent = ({ children }) => {s
 //   const { isCollapsed } = useContext(CardContext);
 //   return children.map((child, index) => {
 //     if (isCollapsed) {
@@ -76,5 +95,3 @@ const Card = ({ post }) => (
 // Card.CardContent = CardContent;
 // Card.Expand = Expand;
 // Card.Collapse = Collapse;
-
-export default Card;
