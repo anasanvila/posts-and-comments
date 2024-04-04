@@ -26,6 +26,11 @@ const Navbar = () => (
           <input
             className="form-control me-2"
             type="text"
+            placeholder="Search"
+          />
+          <input
+            className="form-control me-2"
+            type="text"
             placeholder="Filter by User"
           />
           <button className="btn btn-success" type="button">

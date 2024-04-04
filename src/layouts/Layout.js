@@ -33,7 +33,7 @@ const Layout = ({ list }) => {
         <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 ">
           {pagination.currentData &&
             pagination.currentData.map((post, index) => {
-              //console.log("Post ====", post);
+              console.log("Post ====", post);
               return (
                 <div className="col mb-3" key={post.id}>
                   <Card post={post} key={`${index}-${post.userId}`} />

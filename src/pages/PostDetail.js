@@ -1,5 +1,5 @@
 import Card from "../organisms/Card";
-import { NavLink, useParams, useLoaderData } from "react-router-dom";
+import { useParams, useLoaderData } from "react-router-dom";
 
 const CardItem = ({ item }) => {
   console.log("item ", item);
@@ -11,8 +11,7 @@ const PostDetail = () => {
   //console.log("data", data);
   return (
     <div>
-      <NavLink to={`posts/${data.id}`}>
-        {/* <Card>
+      {/* <Card>
           <Card.CardContent>
             {post.map((item, index) => {
               return <CardItem key={index} item={item} />;
@@ -27,8 +26,7 @@ const PostDetail = () => {
             <div>show less</div>
           </Card.Collapse>
         </Card> */}
-        <Card post={data} />
-      </NavLink>
+      <Card post={data} detail={true} />
     </div>
   );
 };
