@@ -1,12 +1,11 @@
 import Layout from "../layouts/Layout";
 import { useLoaderData } from "react-router-dom";
+import { useEffect } from "react";
 
-const PostList = () => {
+const PostList = ({ text }) => {
+  useEffect(() => text("PostList"));
   const data = useLoaderData();
-  const [postListResData, commentsResData] = data;
-  //console.log("commentsResData", commentsResData);
-
-  return <Layout list={postListResData} />;
+  return <Layout list={data} text={text} />;
 };
 
 export default PostList;
@@ -24,7 +23,5 @@ export async function postListLoader({ request, params }) {
     postListResData = await postListResponse.json();
   }
 
-  let commentsResData = [];
-
-  return [postListResData, commentsResData];
+  return postListResData;
 }

@@ -1,7 +1,9 @@
 import { useRouteError } from "react-router";
+import useEffect from "react";
 
-const ErrorPage = () => {
+const ErrorPage = ({ text }) => {
   const error = useRouteError();
+  useEffect(() => text("ErrorPage"));
   let title = "Error";
   let message = "Something went wrong";
 

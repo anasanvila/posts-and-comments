@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import Comment from "../moleculs/Comment";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ post, detail }) => {
+const Card = ({ post, detail, text }) => {
   const [comments, setComments] = useState([]);
   const [user, setUser] = useState();
+
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`)
       .then((response) => response.json())
@@ -14,14 +15,13 @@ const Card = ({ post, detail }) => {
     fetch(`https://jsonplaceholder.typicode.com/users`)
       .then((response) => response.json())
       .then((data) => {
-        console.log("users", data);
-
         let name = "";
         name = data.forEach((user) => {
           if (user.id == post.userId) setUser(user);
         });
       });
   }, []);
+  useLayoutEffect(() => text("Card"));
 
   return (
     <div className="card p-3 mt-3 fs-6 text-start h-100" key={post.id}>
@@ -40,8 +40,8 @@ const Card = ({ post, detail }) => {
         {!detail && <NavLink to={`${post.id}`}>See more...</NavLink>}
       </div>
       <div className="card-footer">
-        {comments?.map((comment) => (
-          <Comment>
+        {comments?.map((comment, index) => (
+          <Comment text={text} key={`${index}-${comment.id}`}>
             <div style={{ borderBottom: "1px solid green" }}>
               <h5 className="cap">
                 <small>
@@ -65,53 +65,3 @@ const Card = ({ post, detail }) => {
 };
 
 export default Card;
-
-// const LIMIT = 3;
-
-// const CardContext = createContext();
-
-// const Card = ({ children }) => {
-//   const [isCollapsed, setIsCollapsed] = useState(true);
-
-//   const expand = () => {
-//     setIsCollapsed(!isCollapsed);
-//   };
-
-//   const collapse = () => {
-//     setIsCollapsed(!isCollapsed);
-//   };
-
-//   const value = { isCollapsed, expand, collapse };
-//   return (
-//     <CardContext.Provider value={value}>
-//       <div className="card">{children}</div>
-//     </CardContext.Provider>
-//   );
-// };
-
-// const CardContent = ({ children }) => {s
-//   const { isCollapsed } = useContext(CardContext);
-//   return children.map((child, index) => {
-//     if (isCollapsed) {
-//       while (LIMIT > index) {
-//         return <div key={index}>{child}</div>;
-//       }
-//     } else {
-//       return <div key={index}>{child}</div>;
-//     }
-//   });
-// };
-
-// const Expand = ({ children }) => {
-//   const { expand, isCollapsed } = useContext(CardContext);
-//   return isCollapsed && cloneElement(children, { onClick: expand });
-// };
-
-// const Collapse = ({ children }) => {
-//   const { collapse, isCollapsed } = useContext(CardContext);
-//   return !isCollapsed && cloneElement(children, { onClick: collapse });
-// };
-
-// Card.CardContent = CardContent;
-// Card.Expand = Expand;
-// Card.Collapse = Collapse;

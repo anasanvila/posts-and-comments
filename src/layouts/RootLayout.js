@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom";
 
 import Navbar from "../organisms/Navbar";
+import { useEffect } from "react";
 
-function RootLayout() {
+function RootLayout({ text }) {
+  useEffect(() => text("RootLayout"));
   return (
     <>
-      <Navbar />
-      {/* <main className={classes.content}> */}
+      <Navbar text={text} />
       <Outlet />
-      {/* </main> */}
     </>
   );
 }
