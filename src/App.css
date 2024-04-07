@@ -36,3 +36,26 @@
 .extra-small {
   font-size: 12px;
 }
+
+.radio {
+  color: white;
+  width: 150px;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 6px;
+}
+
+.formContainer {
+  background-color: rgb(65, 102, 90);
+  display: flex;
+  justify-content: space-around;
+}
+
+.go {
+  height: 33px;
+  margin-left: 30px;
+  margin-top: 15px;
+}

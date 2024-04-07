@@ -15,7 +15,11 @@ export const SelectGroup = ({ onChange, selected, children }) => {
 
   return (
     <div className="selectGroup">
-      <select value={selected} onChange={handleSelectChange}>
+      <select
+        value={selected}
+        onChange={handleSelectChange}
+        className="form-select  form-select-sm mt-3"
+      >
         {clonedOptions}
       </select>
     </div>

@@ -36,3 +36,5 @@ export const withUsers = (Component) => {
     return <Component {...props} users={users} />;
   };
 };
+
+export const BASE_URL = "https://jsonplaceholder.typicode.com";
