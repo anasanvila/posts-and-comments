@@ -8,7 +8,7 @@ export const RadioGroup = ({ onChange, selected, children }) => {
       checked: child.props.value === selected,
     });
   });
-  return <div className="RadioGroup">{RadioOptions}</div>;
+  return <div className="radioGroup">{RadioOptions}</div>;
 };
 
 export const RadioOption = ({ value, checked, onChange, children }) => {
@@ -23,7 +23,7 @@ export const RadioOption = ({ value, checked, onChange, children }) => {
     },
   };
   return (
-    <div className="RadioOption">
+    <div className="radioOption ">
       <input {...inputProps} />
       <label htmlFor={value}>{children}</label>
     </div>

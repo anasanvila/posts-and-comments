@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Form from "../moleculs/Form";
-
+import { withUsers } from "../utils";
 const Navbar = ({ text }) => {
   useEffect(() => text(" Navbar"));
 
+  const FormWithUsers = withUsers(Form);
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
@@ -27,7 +28,7 @@ const Navbar = ({ text }) => {
               </Link>
             </li>
           </ul>
-          <Form />
+          <FormWithUsers />
         </div>
       </div>
     </nav>

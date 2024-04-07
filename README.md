@@ -6,4 +6,4 @@ npm run
 
 npm run build
 
-When build is created I will copy files from build folder and paste it to hosting, with some changes of the path
+When build is created I would copy files from build folder and paste it to hosting, with some path changes

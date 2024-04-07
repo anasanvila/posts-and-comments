@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import Comment from "../moleculs/Comment";
 import { NavLink } from "react-router-dom";
+import user from "../img/user.png";
 
 const Card = ({ post, detail, text, nameOfUser }) => {
   const [comments, setComments] = useState([]);
@@ -33,20 +34,16 @@ const Card = ({ post, detail, text, nameOfUser }) => {
       <div className="card-footer">
         {comments?.map((comment, index) => (
           <Comment text={text} key={`${index}-${comment.id}`}>
-            <div style={{ borderBottom: "1px solid green" }}>
-              <h5 className="cap">
-                <small>
-                  <b>{comment.name}</b>
-                </small>
-              </h5>
-              <h6 className="text-success">
-                <small>
-                  <i>{comment.email}</i>
-                </small>
-              </h6>
-              <p>
-                <small>{comment.body}</small>
+            <div
+              style={{ borderBottom: "1px solid green", marginBottom: "7px" }}
+            >
+              <p className="text-success fst-italic extra-small">
+                <img src={user} width="40" /> {comment.email} :{" "}
+                <span className="fw-bold fw-normal text-uppercase ">
+                  {comment.name}
+                </span>
               </p>
+              <p className="extra-small cap">{comment.body}</p>
             </div>
           </Comment>
         ))}
