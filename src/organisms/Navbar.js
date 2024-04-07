@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
+import Form from "../moleculs/Form";
 
 const Navbar = ({ text }) => {
   useEffect(() => text(" Navbar"));
+
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
       <div className="container-fluid">
@@ -25,21 +27,7 @@ const Navbar = ({ text }) => {
               </Link>
             </li>
           </ul>
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="text"
-              placeholder="Search"
-            />
-            <input
-              className="form-control me-2"
-              type="text"
-              placeholder="Filter by User"
-            />
-            <button className="btn btn-success" type="button">
-              Go
-            </button>
-          </form>
+          <Form />
         </div>
       </div>
     </nav>

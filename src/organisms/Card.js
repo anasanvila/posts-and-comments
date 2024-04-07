@@ -2,25 +2,16 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import Comment from "../moleculs/Comment";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ post, detail, text }) => {
+const Card = ({ post, detail, text, nameOfUser }) => {
   const [comments, setComments] = useState([]);
-  const [user, setUser] = useState();
-
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`)
       .then((response) => response.json())
       .then((data) => {
         return setComments(data);
       });
-    fetch(`https://jsonplaceholder.typicode.com/users`)
-      .then((response) => response.json())
-      .then((data) => {
-        let name = "";
-        name = data.forEach((user) => {
-          if (user.id == post.userId) setUser(user);
-        });
-      });
   }, []);
+
   useLayoutEffect(() => text("Card"));
 
   return (
@@ -28,7 +19,7 @@ const Card = ({ post, detail, text }) => {
       <div className="card-header">
         <h6>
           <span className="badge border border-success text-success ">
-            User: {user?.name}
+            User: {nameOfUser}
           </span>
         </h6>
         <h5 className="card-title cap">

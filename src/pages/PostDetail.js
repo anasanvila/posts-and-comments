@@ -1,6 +1,7 @@
 import Card from "../organisms/Card";
-import { useParams, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { useEffect } from "react";
+import { withUserName } from "../utils";
 
 const CardItem = ({ item, text }) => {
   useEffect(() => text("CardItem"));
@@ -10,6 +11,7 @@ const CardItem = ({ item, text }) => {
 
 const PostDetail = ({ text }) => {
   const data = useLoaderData();
+  const CardWithUser = withUserName(Card);
   return (
     <div>
       {/* <Card>
@@ -27,7 +29,7 @@ const PostDetail = ({ text }) => {
             <div>show less</div>
           </Card.Collapse>
         </Card> */}
-      <Card post={data} detail={true} text={text} />
+      <CardWithUser post={data} detail={true} text={text} />
     </div>
   );
 };
